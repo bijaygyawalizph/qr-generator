@@ -52,10 +52,10 @@
               <label class="field field--inline">
                 <span class="field__label">Dots style</span>
                 <select id="dots-type">
-                  <option value="square">Square</option>
+                  <option value="square" selected>Square (sharpest, best for scanning)</option>
                   <option value="dots">Dots</option>
                   <option value="rounded">Rounded</option>
-                  <option value="extra-rounded" selected>Extra rounded</option>
+                  <option value="extra-rounded">Extra rounded</option>
                   <option value="classy">Classy</option>
                   <option value="classy-rounded">Classy rounded</option>
                 </select>
@@ -64,9 +64,9 @@
               <label class="field field--inline">
                 <span class="field__label">Corner style</span>
                 <select id="corners-type">
-                  <option value="square">Square</option>
+                  <option value="square" selected>Square (sharpest)</option>
                   <option value="dot">Dot</option>
-                  <option value="extra-rounded" selected>Extra rounded</option>
+                  <option value="extra-rounded">Extra rounded</option>
                 </select>
               </label>
             </div>
@@ -74,7 +74,7 @@
             <div class="field-row">
               <label class="field field--inline">
                 <span class="field__label">Dots color</span>
-                <input type="color" id="dots-color" value="#1f2937" />
+                <input type="color" id="dots-color" value="#000000" />
               </label>
 
               <label class="field field--inline">
@@ -86,7 +86,7 @@
             <div class="field-row">
               <label class="field field--inline">
                 <span class="field__label">Size (px)</span>
-                <input type="number" id="qr-size" value="300" min="150" max="1000" step="10" />
+                <input type="number" id="qr-size" value="500" min="150" max="1000" step="10" />
               </label>
 
               <label class="field field--inline">
