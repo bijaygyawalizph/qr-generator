@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QR Code Generator</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <h1>QR Code Generator</h1>
+      <p>Paste a link, optionally add a logo, and download your QR code.</p>
+    </header>
+
+    <main class="app__main">
+      <section class="panel panel--form">
+        <form id="qr-form" novalidate>
+          <label class="field">
+            <span class="field__label">Link / URL *</span>
+            <input
+              type="url"
+              id="url-input"
+              name="url"
+              placeholder="https://example.com"
+              required
+              autocomplete="off"
+            />
+          </label>
+
+          <div class="field">
+            <span class="field__label">Logo (optional)</span>
+            <div class="dropzone" id="dropzone">
+              <input type="file" id="logo-input" name="logo" accept="image/*" hidden />
+              <div class="dropzone__content" id="dropzone-content">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 16V4M12 4L7 9M12 4l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Click to upload or drag &amp; drop</span>
+                <small>PNG, JPG, SVG — recommended square image</small>
+              </div>
+              <img id="logo-preview" class="dropzone__preview" alt="Logo preview" hidden />
+            </div>
+            <button type="button" id="remove-logo" class="link-btn" hidden>Remove logo</button>
+          </div>
+
+          <fieldset class="field-group">
+            <legend>Style</legend>
+
+            <div class="field-row">
+              <label class="field field--inline">
+                <span class="field__label">Dots style</span>
+                <select id="dots-type">
+                  <option value="square">Square</option>
+                  <option value="dots">Dots</option>
+                  <option value="rounded">Rounded</option>
+                  <option value="extra-rounded" selected>Extra rounded</option>
+                  <option value="classy">Classy</option>
+                  <option value="classy-rounded">Classy rounded</option>
+                </select>
+              </label>
+
+              <label class="field field--inline">
+                <span class="field__label">Corner style</span>
+                <select id="corners-type">
+                  <option value="square">Square</option>
+                  <option value="dot">Dot</option>
+                  <option value="extra-rounded" selected>Extra rounded</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label class="field field--inline">
+                <span class="field__label">Dots color</span>
+                <input type="color" id="dots-color" value="#1f2937" />
+              </label>
+
+              <label class="field field--inline">
+                <span class="field__label">Background</span>
+                <input type="color" id="bg-color" value="#ffffff" />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label class="field field--inline">
+                <span class="field__label">Size (px)</span>
+                <input type="number" id="qr-size" value="300" min="150" max="1000" step="10" />
+              </label>
+
+              <label class="field field--inline">
+                <span class="field__label">Error correction</span>
+                <select id="error-correction">
+                  <option value="L">Low (L)</option>
+                  <option value="M" selected>Medium (M)</option>
+                  <option value="Q">Quartile (Q)</option>
+                  <option value="H">High (H) — best with logo</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="actions">
+            <button type="submit" class="btn btn--primary">Generate QR Code</button>
+            <button type="button" id="reset-btn" class="btn btn--ghost">Reset</button>
+          </div>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+        </form>
+      </section>
+
+      <section class="panel panel--preview">
+        <div class="preview-card">
+          <div id="qr-canvas" class="qr-canvas qr-canvas--empty">
+            <span>Your QR code will appear here</span>
+          </div>
+          <div class="download-row" id="download-row" hidden>
+            <label class="field field--inline field--compact">
+              <span class="field__label">Format</span>
+              <select id="download-format">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="svg">SVG</option>
+              </select>
+            </label>
+            <button type="button" id="download-btn" class="btn btn--primary">Download</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app__footer">
+      <p>Runs entirely in your browser — no data is sent to a server.</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
